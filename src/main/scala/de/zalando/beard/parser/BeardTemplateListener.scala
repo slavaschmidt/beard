@@ -10,7 +10,10 @@ class BeardTemplateListener extends BeardParserBaseListener {
 
   var result: BeardTemplate = BeardTemplate(List.empty)
 
-  override def exitText(ctx: TextContext) = ctx.result = Text(ctx.TEXT().getText)
+  override def exitText(ctx: TextContext) = ctx.result = Text(ctx.TEXT() match {
+    case null => ctx.CURLY_BRACKET().getText
+    case notNull => notNull.getText
+  })
 
   override def exitNewLine(ctx: NewLineContext) = ctx.result = NewLine(ctx.NL().size())
 
