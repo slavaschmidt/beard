@@ -8,6 +8,8 @@ WS      : [ \t];
 
 TEXT    : ~('{' | '}' | ' ' | '\t' | '\n' | '\r')+;
 
+CURLY_BRACKET : ('{' {_input.LA(1) != '{'}? ) | ('}' {_input.LA(1) != '}'}? );
+
 mode INSIDE_INTERPOLATION;
 
     RR : '}}' -> popMode;

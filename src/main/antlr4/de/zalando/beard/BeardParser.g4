@@ -177,5 +177,5 @@ locals [NewLine result]
 
 text
 locals [Text result]
-    : TEXT
+    : TEXT | CURLY_BRACKET
     ;
